@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ziad Al-Khozamy - Data Engineer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 25px;
+        }
+
+        nav ul li a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Cover Section */
+        .cover {
+            padding-top: 120px;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff10" points="0,1000 1000,0 1000,1000"/></svg>');
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .cover-content {
+            z-index: 2;
+            position: relative;
+        }
+
+        .profile-image-placeholder {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            border: 4px solid rgba(255,255,255,0.3);
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+            backdrop-filter: blur(10px);
+        }
+        .profile-image{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid rgba(255,255,255,0.3);
+            margin: 0;
+            object-fit: cover;
+        }
+
+        .cover h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .cover h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+
+        .cover p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.8;
+            animation: slideInUp 1s ease-out 0.4s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.3);
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #333;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .skill-category h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            width: 100%;
+            height: 40px;
+            margin-top: 10px;
+            padding: 5px 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            color: #666;
+        }
+        #special-skill{
+            margin: 0;
+            margin-bottom: 30px;
+        }
+        .tech-logo{
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin: 0;
+        }
+        .tech-logos{
+            padding: 0;
+            margin-right: 20px;
+            display: flex;
+            flex-direction: row;
+            column-gap: 0;
+        }
+        /* Education & Certifications */
+        .education-grid {
+            display: grid;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .education-item, .cert-item {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .education-item:hover, .cert-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .edu-image, .cert-image {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .edu-content, .cert-content {
+            flex: 1;
+        }
+
+        .edu-content h3, .cert-content h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .edu-content p, .cert-content p {
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .highlight {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+            margin-top: 40px;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid #667eea;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .icon-experience{
+            width: 250px;
+            height: 100%;
+            object-fit: contain;
+        }
+        .timeline-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .timeline-item h3 {
+            color: #333;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item .company {
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .timeline-item ul {
+            margin-left: 20px;
+            color: #666;
+        }
+
+        .timeline-item li {
+            margin-bottom: 8px;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .project-image {
+            height: 200px;
+            object-fit: contain;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-content h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .project-content p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tech-tag {
+            background: #f0f0f0;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #667eea;
+        }
+
+        .project-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #764ba2;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-item {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 24px;
+        }
+
+        .service-item h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .service-item p {
+            color: #666;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: white;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+        }
+
+        .contact-item h3 {
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .contact-item p {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .cover h1 {
+                font-size: 2.5rem;
+            }
+
+            .cover h2 {
+                font-size: 1.5rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .education-item, .cert-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Add some animation to elements when they come into view */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Cover Section -->
+    <section id="home" class="cover">
+        <div class="cover-content">
+            <div class="profile-image-placeholder">
+                <img class="profile-image" src="photo2.jpg">
+            </div>
+            <h1>ZIAD AL-KHOZAMY</h1>
+            <h2>DATA ENGINEER</h2>
+            <p>Aspiring data engineer with technical competence and experience from academic and professional projects, eager to learn and take on the full career of AI engineering.</p>
+            <a href="#contact" class="cta-button">Let's Work Together</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content fade-in">
+                <p>I'm a passionate data engineer with a strong foundation in computer engineering from Cairo University, where I first discovered my enthusiasm for the tech industry and was inspired by the late advances in AI technologies . I was among the top 3.5% of students in the first year and started my journey in computer engineering, studying both software and hardware development, completing over 10 diverse projects and gaining technical versatility.</p>
+                <br>
+                <p>With expertise spanning from low-level programming languages like ARM and x86 Assembly, passing by higher-level languages as C++ and C to data manipulation tools like Python, Pandas, and NumPy, I try to bring a unique perspective to data engineering challenges.</p>
+                <br>
+                <p>I'm particularly drawn to the intersection of AI and data engineering, constantly seeking opportunities to expand my knowledge and contribute to innovative solutions in the tech industry. My academic excellence, combined with practical experience and passion for continuous learning, positions me to tackle complex data challenges and drive meaningful technological advancement.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category fade-in">
+                    <h3>Programming Languages</h3>
+                    <ul class="skill-list">
+                        <li>
+                            <div class="tech-logos">
+                                <img class="tech-logo" src="python logo.webp">
+                            </div>
+                            Python
+                        </li>
+                        <li>
+                            <div class="tech-logos">
+                                <img class="tech-logo" src="c logo.png">
+                                <img class="tech-logo" src="cpp logo.png">
+                            </div>
+                            C/C++
+                        </li>
+                        <li>
+                            <div class="tech-logos">
+                                <img class="tech-logo" src="sql logo.jpeg">
+                            </div>
+                            SQL
+                        </li>
+                        <li>
+                            <div class="tech-logos">
+                                <img class="tech-logo" src="arm logo.png">
+                            </div>
+                            ARM Assembly
+                        </li>
+                        <li>
+                            <div class="tech-logos">
+                                <img class="tech-logo" src="x86 logo.png">
+                            </div>
+                            x86 Assembly
+                        </li>
+                        <li>
+                            <div class="tech-logos">
+                                <img class="tech-logo" src="verilog logo.png">
+                            </div>
+                            Verilog
+                        </li>
+                    </ul>
+                </div>
+                <div class="skill-category fade-in">
+                    <h3>Web Technologies</h3>
+                    <ul class="skill-list">
+                        <li>
+                            <div class="tech-logos">
+                                <img class="tech-logo" src="html5 logo.jpeg">
+                            </div>
+                            HTML5
+                        </li>
+                        <li>
+                            <div class="tech-logos">
+                                <img class="tech-logo" src="css3 logo.jpeg">
+                            </div>
+                            CSS3
+                        </li>
+                        <li>
+                            <div class="tech-logos">
+                                <img class="tech-logo" src="js logo.jpeg">
+                            </div>
+                            JavaScript
+                        </li>
+                        <li>
+                            <div class="tech-logos">
+                                <img class="tech-logo" src="responsive design logo.jpeg">
+                            </div>
+                            Responsive Design
+                        </li>
+                    </ul>
+                </div>
+                <div class="skill-category fade-in">
+                    <h3>Data Engineering</h3>
+                    <ul class="skill-list">
+                        <li>
+                            <div class="tech-logos">
+                                <img class="tech-logo" src="numpy logo.png">
+                            </div>
+                            NumPy
+                        </li>
+                        <li>
+                            <div class="tech-logos">
+                                <img class="tech-logo" src="pandas logo.png">
+                            </div>
+                            Pandas
+                        </li>
+                        <li>
+                            <div class="tech-logos">
+                                <img class="tech-logo" src="data analysis logo.png">
+                            </div>
+                            Data Analysis
+                        </li>
+                        <li>
+                            <div class="tech-logos">
+                                <img class="tech-logo" src="database logo.jpeg">
+                            </div>
+                            Database Design
+                        </li>
+                    </ul>
+                </div>
+                <div class="skill-category fade-in">
+                    <h3>Hardware & Embedded</h3>
+                    <ul class="skill-list">
+                        <li id="special-skill">
+                            <div class="tech-logos">
+                                <img class="tech-logo" src="stm32 logo.png">
+                            </div>
+                            STM32 Microcontrollers
+                        </li>
+                        <li>
+                            <div class="tech-logos">
+                                <img class="tech-logo" src="arduino logo.png">
+                            </div>
+                            Arduino
+                        </li>
+                        <li>
+                            <div class="tech-logos">
+                                <img class="tech-logo" src="fpga logo.jpeg">
+                            </div>
+                            FPGA Development
+                        </li>
+                        <li>
+                            <div class="tech-logos">
+                                <img class="tech-logo" src="circuit design logo.jpeg">
+                            </div>
+                            Circuit Design
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <div class="container">
+            <h2>Education & Certifications</h2>
+            <div class="education-grid">
+                <div class="education-item fade-in">
+                    <img class="edu-image" src="CUFE logo.jpg">
+                    <div class="edu-content">
+                        <h3>Bachelor of Computer Engineering</h3>
+                        <p class="highlight">Cairo University, Faculty of Engineering</p>
+                        <p><strong>CGPA:</strong> 3.73 (Excellence)</p>
+                        <p>Top 3.5% of students in the first year</p>
+                        <p>Experience with software and hardware development with 10+ projects</p>
+                    </div>
+                </div>
+
+                <div class="education-item fade-in">
+                    <img src="Al-Kobba logo.jpg" class="edu-image">
+                    <div class="edu-content">
+                        <h3>High School Degree in Mathematical Sciences</h3>
+                        <p class="highlight">Al-Kobba Military High School</p>
+                        <p><strong>Score:</strong> 94.3%</p>
+                        <p>Top 0.5% students around the country</p>
+                    </div>
+                </div>
+
+                <div class="cert-item fade-in">
+                    <img src="harvard logo.jpeg" class="cert-image">
+                    <div class="cert-content">
+                        <h3>CS50's Introduction to Programming with Python</h3>
+                        <p class="highlight">Harvard University</p>
+                        <p>Solved 9 problem sets and presented one final project</p>
+                        <p>Comprehensive Python programming certification</p>
+                    </div>
+                </div>
+
+                <div class="cert-item fade-in">
+                    <img src="iymc logo.png" class="cert-image">
+                    <div class="cert-content">
+                        <h3>IYMC 2024 Participation</h3>
+                        <p class="highlight">International Young Mathematicians' Convention</p>
+                        <p>Problem solving and mathematics experience</p>
+                        <p>Solved all questions and got certified</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2>Professional Experience</h2>
+            <div class="experience-timeline">
+                <div class="timeline-item fade-in">
+                    <div class="non-icon-experience">
+                        <h3>Data Engineering Trainee</h3>
+                        <p class="company">DEPI (Digital Egypt Pioneers Initiative)</p>
+                        <ul>
+                            <li>Gained extensive experience with Python, Pandas, NumPy, and SQL</li>
+                            <li>Completed over 110 hours of technical training</li>
+                            <li>Completed 50 hours of soft skills and freelancing training</li>
+                            <li>Developed proficiency in data manipulation and analysis</li>
+                        </ul>
+                    </div>    
+                    <img class="icon-experience" src="depi logo.png">
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="non-icon-experience">
+                        <h3>IT Support Specialist</h3>
+                        <p class="company">AlphaCare Clinics</p>
+                        <ul>
+                            <li>Managed clinic's system support and participated in system developments</li>
+                            <li>Helped establish an efficient system for storing and searching through patients' data</li>
+                            <li>Installed and maintained an enhanced security system for the clinic</li>
+                            <li>Improved data accessibility and system reliability</li>
+                        </ul>
+                    </div>
+                    <img src="alphacare logo.png" class="icon-experience">
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="non-icon-experience">
+                        <h3>Web Development Workshop Participant</h3>
+                        <p class="company">Cairo University Faculty of Engineering (CUFE)</p>
+                        <ul>
+                            <li>Gained hands-on experience with HTML, CSS, and JavaScript</li>
+                            <li>Built and deployed fully responsive functional websites</li>
+                            <li>Completed over 20 hours of intensive training</li>
+                            <li>Developed strong front-end development skills</li>
+                        </ul>
+                    </div>
+                    <img src="webdev logo.png" class="icon-experience">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <img src="mycinema project.png" class="project-image">
+                    <div class="project-content">
+                        <h3>My Cinema – Python CLI Application</h3>
+                        <p>Interactive command-line app for movie management developed as Harvard's CS50P final project. Features custom data structures, IMDb API integration, and persistent storage.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">APIs</span>
+                            <span class="tech-tag">CLI Design</span>
+                            <span class="tech-tag">Data Structures</span>
+                        </div>
+                        <a href="https://www.linkedin.com/posts/eng-ziad-al-khozamy_cs50p-python-imdb-activity-7355673867735994369-H-gc?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFLpA0kBheByJPl9jlsLRGttppNITZJzS5U" class="project-link">View Project →</a>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <img src="snake-monopoly project.jpg" class="project-image">
+                    <div class="project-content">
+                        <h3>Snake-Monopoly Game</h3>
+                        <p>A complete game implementation built from scratch in C++ without any third-party libraries. Combines classic Snake gameplay with Monopoly elements.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">C++</span>
+                            <span class="tech-tag">Game Development</span>
+                            <span class="tech-tag">Object-Oriented Programming</span>
+                        </div>
+                        <a href="https://www.linkedin.com/posts/eng-ziad-al-khozamy_cplusplus-gamedevelopment-teamwork-activity-7288859693366587393-dM1c?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFLpA0kBheByJPl9jlsLRGttppNITZJzS5U" class="project-link">View Project →</a>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <img src="nova project.jpeg" class="project-image">
+                    <div class="project-content">
+                        <h3>GameBoy Project</h3>
+                        <p>A complete GameBoy implementation built from scratch using STM32 Microcontroller, TFT screen, and basic components. Achieved 2nd place in class competition.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">ARMv7</span>
+                            <span class="tech-tag">STM32</span>
+                            <span class="tech-tag">Embedded Systems</span>
+                            <span class="tech-tag">Hardware Design</span>
+                        </div>
+                        <a href="https://www.linkedin.com/posts/eng-ziad-al-khozamy_embeddedsystems-armassembly-stm32-activity-7329316027354275841-fhZR?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFLpA0kBheByJPl9jlsLRGttppNITZJzS5U" class="project-link">View Project →</a>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <img src="physio project.PNG" class="project-image">
+                    <div class="project-content">
+                        <h3>Physiotherapy Centre Simulation</h3>
+                        <p>C++ program simulating a physiotherapy center with advanced algorithms for patient distribution and room management using various data structures.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">C++</span>
+                            <span class="tech-tag">Data Structures</span>
+                            <span class="tech-tag">Algorithms</span>
+                            <span class="tech-tag">System Design</span>
+                        </div>
+                        <a href="https://www.linkedin.com/posts/eng-ziad-al-khozamy_datastructures-algorithms-cplusplus-activity-7329497217558278145-dS0d?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFLpA0kBheByJPl9jlsLRGttppNITZJzS5U" class="project-link">View Project →</a>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <img src="robosoccer project.jpg" class="project-image">
+                    <div class="project-content">
+                        <h3>RoboSoccer Robot</h3>
+                        <p>Box-shaped robot with wheels designed for RoboSoccer competition. Features Arduino-based control system with Bluetooth connectivity.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Arduino</span>
+                            <span class="tech-tag">Easy C</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Robotics</span>
+                        </div>
+                        <a href="https://www.linkedin.com/posts/eng-ziad-al-khozamy_from-concept-to-competition-my-first-robotics-activity-7300247256555835393-NqUS?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFLpA0kBheByJPl9jlsLRGttppNITZJzS5U" class="project-link">View Project →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <div class="container">
+            <h2>Services I Offer</h2>
+            <div class="services-grid">
+                <div class="service-item fade-in">
+                    <div class="service-icon">📊</div>
+                    <h3>Data Engineering</h3>
+                    <p>Design and implement robust data pipelines, ETL processes, and data warehousing solutions using Python, SQL, and modern data tools.</p>
+                </div>
+
+                <div class="service-item fade-in">
+                    <div class="service-icon">🔧</div>
+                    <h3>System Development</h3>
+                    <p>Full-stack system development from database design to user interfaces, with expertise in both software and hardware integration.</p>
+                </div>
+
+                <div class="service-item fade-in">
+                    <div class="service-icon">🌐</div>
+                    <h3>Web Development</h3>
+                    <p>Create responsive, functional websites using HTML5, CSS3, and JavaScript with modern design principles and optimal user experience.</p>
+                </div>
+
+                <div class="service-item fade-in">
+                    <div class="service-icon">🤖</div>
+                    <h3>Embedded Systems</h3>
+                    <p>Design and develop embedded systems solutions using microcontrollers, FPGA programming, and hardware-software integration.</p>
+                </div>
+
+                <div class="service-item fade-in">
+                    <div class="service-icon">🛠️</div>
+                    <h3>IT Support & Consulting</h3>
+                    <p>Comprehensive IT support services including system optimization, security implementation, and technical consulting for businesses.</p>
+                </div>
+
+                <div class="service-item fade-in">
+                    <div class="service-icon">📱</div>
+                    <h3>Application Development</h3>
+                    <p>Custom application development including CLI tools, desktop applications, and specialized software solutions tailored to your needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2>Let's Connect</h2>
+            <p style="text-align: center; margin-bottom: 40px; font-size: 1.2rem;">Ready to bring your data engineering projects to life? Let's discuss how we can work together!</p>
+            
+            <div class="contact-info">
+                <div class="contact-item fade-in">
+                    <h3>📧 Email</h3>
+                    <p><a href="mailto:ziadkhozamy@outlook.com">ziadkhozamy@outlook.com</a></p>
+                </div>
+
+                <div class="contact-item fade-in">
+                    <h3>📱 Phone</h3>
+                    <p><a href="tel:+201060260876">+20 106 026 0876</a></p>
+                </div>
+
+                <div class="contact-item fade-in">
+                    <h3>📍 Location</h3>
+                    <p>El-Zaytoon, Cairo, Egypt</p>
+                </div>
+
+                <div class="contact-item fade-in">
+                    <h3>💼 LinkedIn</h3>
+                    <p><a href="https://linkedin.com/in/eng-ziad-al-khozamy" target="_blank">eng-ziad-al-khozamy</a></p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="mailto:ziadkhozamy@outlook.com" class="cta-button">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                const navHeight = document.querySelector('nav').offsetHeight;
+                const targetPosition = target.offsetTop - navHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with fade-in class
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add active class to navigation links
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section, .cover');
+            const navLinks = document.querySelectorAll('nav a');
+            const navHeight = document.querySelector('nav').offsetHeight;
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - navHeight - 100;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Add hover effects for project cards
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add typing effect to the main title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize typing effect when page loads
+        window.addEventListener('load', () => {
+            const title = document.querySelector('.cover h1');
+            const originalText = title.textContent;
+            setTimeout(() => {
+                typeWriter(title, originalText, 100);
+            }, 1000);
+        });
+
+        // Add parallax effect to cover section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const cover = document.querySelector('.cover');
+            const rate = scrolled * -0.5;
+            
+            cover.style.transform = `translateY(${rate}px)`;
+        });
+
+        // Add dynamic background colors based on scroll position
+        window.addEventListener('scroll', () => {
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            const hue = Math.floor(scrollPercent * 3.6); // 0-360 degrees
+            document.documentElement.style.setProperty('--dynamic-hue', hue);
+        });
+
+        // Mobile menu toggle functionality
+        function createMobileMenu() {
+            if (window.innerWidth <= 768) {
+                const nav = document.querySelector('nav ul');
+                const menuToggle = document.createElement('div');
+                menuToggle.className = 'menu-toggle';
+                menuToggle.innerHTML = '☰';
+                menuToggle.style.cssText = `
+                    display: block;
+                    color: white;
+                    font-size: 24px;
+                    cursor: pointer;
+                    padding: 10px;
+                    text-align: center;
+                `;
+                
+                nav.parentNode.insertBefore(menuToggle, nav);
+                nav.style.display = 'none';
+                
+                menuToggle.addEventListener('click', () => {
+                    nav.style.display = nav.style.display === 'none' ? 'flex' : 'none';
+                });
+            }
+        }
+
+        // Initialize mobile menu on load and resize
+        window.addEventListener('load', createMobileMenu);
+        window.addEventListener('resize', createMobileMenu);
+    </script>
+
+    <!-- Additional CSS for active navigation and mobile improvements -->
+    <style>
+        nav ul li a.active {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                padding: 20px 0;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            }
+
+            .menu-toggle {
+                display: block !important;
+            }
+
+            .profile-image-placeholder {
+                width: 150px;
+                height: 150px;
+            }
+
+            .cover h1 {
+                font-size: 2rem;
+            }
+
+            .cover h2 {
+                font-size: 1.3rem;
+            }
+
+            .cover p {
+                font-size: 1rem;
+                padding: 0 20px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            nav, .cta-button {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+                padding: 30px 0;
+            }
+            
+            .cover {
+                height: auto;
+                padding: 50px 0;
+            }
+        }
+    </style>
+</body>
+</html>
